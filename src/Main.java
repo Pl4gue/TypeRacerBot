@@ -1,5 +1,6 @@
-import javax.swing.*;
 import java.awt.*;
+
+import static javax.swing.JOptionPane.*;
 
 /**
  * Project "TypeRacerTyper"
@@ -13,17 +14,16 @@ public class Main {
 
 
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException, AWTException, InterruptedException {
-        JOptionPane pane = new JOptionPane();
         while (true) {
             try {
-                cpm = Integer.parseInt(pane.showInputDialog("Buchstaben pro Minute:"));
-                text = pane.showInputDialog(null, "Text");
+                cpm = Integer.parseInt(showInputDialog("Buchstaben pro Minute:"));
+                text = showInputDialog(null, "Text");
                 cpm = 60000 / cpm;
                 robot = new CustomRobot();
                 Thread.sleep(1500);
-                robot.typeCharacter(robot, text, cpm);
+                CustomRobot.typeCharacter(robot, text, cpm);
             } catch (NumberFormatException nfE) {
-                pane.showMessageDialog(null, "Bitte eine positive Ganzzahl eingeben", "Warnung", JOptionPane.ERROR_MESSAGE);
+                showMessageDialog(null, "Bitte eine positive Ganzzahl eingeben", "Warnung", ERROR_MESSAGE);
             }
         }
 
